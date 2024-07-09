@@ -1,0 +1,160 @@
+{
+  "annotations": [
+    {
+      "annotation_metadata": {
+        "curator": {
+          "name": "",
+          "email": ""
+        },
+        "annotator": {},
+        "version": "",
+        "corpus": "",
+        "annotation_tools": "",
+        "annotation_rules": "",
+        "validation": "",
+        "data_source": ""
+      },
+      "namespace": "segment_open",
+      "data": [
+        {
+          "time": 0.0,
+          "duration": 8.248888888888889,
+          "value": "intro",
+          "confidence": null
+        },
+        {
+          "time": 8.248888888888889,
+          "duration": 7.563900226757369,
+          "value": "verse",
+          "confidence": null
+        },
+        {
+          "time": 15.812789115646257,
+          "duration": 7.587120181405897,
+          "value": "verse",
+          "confidence": null
+        },
+        {
+          "time": 23.399909297052154,
+          "duration": 7.563900226757369,
+          "value": "verse",
+          "confidence": null
+        },
+        {
+          "time": 30.963809523809523,
+          "duration": 7.563900226757376,
+          "value": "verse",
+          "confidence": null
+        },
+        {
+          "time": 38.5277097505669,
+          "duration": 22.726530612244893,
+          "value": "chorus",
+          "confidence": null
+        },
+        {
+          "time": 61.25424036281179,
+          "duration": 7.581315192743766,
+          "value": "chorus",
+          "confidence": null
+        },
+        {
+          "time": 68.83555555555556,
+          "duration": 15.127800453514737,
+          "value": "verse",
+          "confidence": null
+        },
+        {
+          "time": 83.9633560090703,
+          "duration": 7.5697052154195035,
+          "value": "verse",
+          "confidence": null
+        },
+        {
+          "time": 91.5330612244898,
+          "duration": 7.558095238095234,
+          "value": "verse",
+          "confidence": null
+        },
+        {
+          "time": 99.09115646258503,
+          "duration": 15.168435374149666,
+          "value": "chorus",
+          "confidence": null
+        },
+        {
+          "time": 114.2595918367347,
+          "duration": 7.575510204081638,
+          "value": "chorus",
+          "confidence": null
+        },
+        {
+          "time": 121.83510204081634,
+          "duration": 7.5813151927437445,
+          "value": "bridge",
+          "confidence": null
+        },
+        {
+          "time": 129.41641723356008,
+          "duration": 7.54068027210883,
+          "value": "bridge",
+          "confidence": null
+        },
+        {
+          "time": 136.9570975056689,
+          "duration": 15.18004535147395,
+          "value": "bridge",
+          "confidence": null
+        },
+        {
+          "time": 152.13714285714286,
+          "duration": 15.127800453514737,
+          "value": "bridge",
+          "confidence": null
+        },
+        {
+          "time": 167.2649433106576,
+          "duration": 15.156825396825411,
+          "value": "chorus",
+          "confidence": null
+        },
+        {
+          "time": 182.421768707483,
+          "duration": 15.145215419501142,
+          "value": "chorus",
+          "confidence": null
+        },
+        {
+          "time": 197.56698412698415,
+          "duration": 15.127800453514709,
+          "value": "chorus",
+          "confidence": null
+        },
+        {
+          "time": 212.69478458049886,
+          "duration": 20.839909297052174,
+          "value": "outro",
+          "confidence": null
+        },
+        {
+          "time": 233.53469387755104,
+          "duration": 2.559999999999974,
+          "value": "silence",
+          "confidence": null
+        }
+      ],
+      "sandbox": {},
+      "time": 0,
+      "duration": 236.094693877551
+    }
+  ],
+  "file_metadata": {
+    "title": "",
+    "artist": "",
+    "release": "",
+    "duration": 236.094693877551,
+    "identifiers": {},
+    "jams_version": "0.3.4"
+  },
+  "sandbox": {}
+}
