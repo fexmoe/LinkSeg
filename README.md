@@ -53,6 +53,8 @@ To use the 7-class pre-trained model, run:
 python predict.py --test_data_path {dataset_path} --model_name ../data/model_7_classes.pt
 ```
 
+By default, segmentation predictions will be saved in .jams file format under the dataset/predictions/ directory. 
+
 ## Citing
 ```
 @inproceedings{buisson2022learning,
