@@ -37,6 +37,11 @@ To train a new LinkSeg model, run:
 python train.py --data_path {dataset_path}
 ```
 
+The default label taxonomy contains 7 section labels: Silence, Intro, Verse, Chorus, Bridge, Instrumental and Outro. A second taxonomy containing Pre-chorus and Post-chorus labels can be used:
+```
+python train.py --data_path {dataset_path} --nb_section_labels 9
+``` 
+
 ## Inference
 To make predictions using a trained model, run:
 ```
