@@ -21,7 +21,7 @@ The dataset structure follows that of the [MSAF](https://ismir2015.ismir.net/LBD
 dataset/
 ├── audio                   # audio files (.mp3, .wav, .aiff)
 ├── audio_npy               # audio files (.npy)
-├── features                # feature files (.npy)
+├── features                # feature files (.json)
 └── references              # references files (.jams) (if available, necessary for training)
 ```
 
