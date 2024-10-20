@@ -48,7 +48,7 @@ To make predictions using a trained model, run:
 python predict.py --test_data_path {dataset_path} --model_name {path_to_model}
 ```
 
-To use the 7-class pre-trained model, run:
+To use the 7-class pre-trained model (on a 75% split of Harmonix), run:
 ```
 python predict.py --test_data_path {dataset_path} --model_name ../data/model_7_classes.pt
 ```
