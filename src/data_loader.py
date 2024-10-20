@@ -42,8 +42,6 @@ class GNN_dset(torch.utils.data.Dataset):
            
             beat_times = librosa.frames_to_time(beat_frames, sr=22050, hop_length=256)
             ref_labels, ref_times, duration_ = get_ref_labels(file_struct, 0)
-            #if 'music_collection' in track:
-            #    ref_labels = verse_before_chorus(ref_labels)
 
             ref_inter = times_to_intervals(ref_times)
             (ref_inter, ref_labels) = mir_eval.util.adjust_intervals(ref_inter, list(ref_labels), t_min=0, t_max=duration)
@@ -73,21 +71,11 @@ class GNN_dset(torch.utils.data.Dataset):
             SSM_segment = labels_list_oh_segment @ labels_list_oh_segment.T
             SSM_merged = labels_list_oh_merged @ labels_list_oh_merged.T
 
-            #if 'music_collection' in track:
-            
-            #    if check_durations(ref_inter, ref_labels) == False:
-            #if chorus_rep(ref_labels) == False:
-            #        SSMS_ref.append((SSM_segment, SSM_merged))
-            #        labels_ref.append(labels_list_oh_merged)
-            #        beat_frames_list.append(beat_frames)
-            #        tracklist.append(track)
-            
-            #else:
             SSMS_ref.append((SSM_segment, SSM_merged))
             labels_ref.append(labels_list_oh_merged)
             beat_frames_list.append(beat_frames)
             tracklist.append(track)
-            
+
         return SSMS_ref, labels_ref, beat_frames_list, tracklist
     
 
