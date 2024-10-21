@@ -45,7 +45,12 @@ python train.py --data_path {dataset_path} --nb_section_labels 9
 ``` 
 
 ## Inference
-To make predictions using a trained model, run:
+To make predictions using a trained model, first make sure that the test dataset is processed: 
+```
+python preprocess_data.py --data_path {test_dataset_path}
+```
+
+Then run:
 ```
 python predict.py --test_data_path {dataset_path} --model_name {path_to_model}
 ```
