@@ -12,7 +12,9 @@ presented at ISMIR 2024.
 
 ## Requirements
 ```
-conda env create -f environment.yml
+conda create -n YOUR_ENV_NAME python=3.8
+conda activate YOUR_ENV_NAME
+pip install -r requirements.txt
 ```
 
 ## Dataset
@@ -29,7 +31,7 @@ To preprocess some dataset, run:
 ```
 python preprocess_data.py --data_path {dataset_path}
 ```
-This will handle the /audio_npy and /features files. 
+This will handle the creation of /audio_npy and /features files. 
 
 ## Training
 To train a new LinkSeg model, run:
@@ -57,7 +59,7 @@ By default, segmentation predictions will be saved in .jams file format under th
 
 ## Citing
 ```
-@inproceedings{buisson2022learning,
+@inproceedings{buisson:hal-04665063,
   title={Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis},
   author={Buisson, Morgan and McFee, Brian and Essid, Slim},
   booktitle={International Society for Music Information Retrieval (ISMIR)},
