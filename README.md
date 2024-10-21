@@ -52,7 +52,7 @@ python preprocess_data.py --data_path {test_dataset_path}
 
 Then run:
 ```
-python predict.py --test_data_path {dataset_path} --model_name {path_to_model}
+python predict.py --test_data_path {test_dataset_path} --model_name {path_to_model}
 ```
 
 To use the 7-class pre-trained model (on a 75% split of Harmonix), run:
