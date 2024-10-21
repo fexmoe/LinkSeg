@@ -1,5 +1,5 @@
 # LinkSeg: Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis
-This repository contains a [PyTorch](http://pytorch.org/) implementation of the paper [Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis](https://hal.science/hal-04665063/) 
+This repository contains the official [PyTorch](http://pytorch.org/) implementation of the paper [Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis](https://hal.science/hal-04665063/) 
 presented at ISMIR 2024.
 
 ## Table of Contents
