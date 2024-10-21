@@ -12,7 +12,9 @@ presented at ISMIR 2024.
 
 ## Requirements
 ```
-conda env create -f environment.yml
+conda create -n YOUR_ENV_NAME python=3.8
+conda activate YOUR_ENV_NAME
+pip install -r requirements.txt
 ```
 
 ## Dataset
