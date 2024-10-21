@@ -5,7 +5,7 @@
 [Morgan Buisson](https://morgan76.github.io/)<sup>1</sup>,
 [Brian McFee](https://brianmcfee.net/)<sup>2,3</sup>,
 [Slim Essid](https://slimessid.github.io/research/)<sup>1</sup> <br>
-<sup>1</sup>  LTCI, Télécom Paris, Institut Polytechnique de Paris, France, <sup>2</sup>  Music and Audio Research Laboratory, New York University, USA, <sup>3</sup> Center for Data Science, New York University, USA
+<sup>1</sup>  LTCI, Télécom Paris, Institut Polytechnique de Paris, France <br> <sup>2</sup>  Music and Audio Research Laboratory, New York University, USA <br> <sup>3</sup> Center for Data Science, New York University, USA
   
 <p align="center">
 <img src="linkseg.png" width="500">
