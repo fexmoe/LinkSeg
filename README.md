@@ -1,6 +1,19 @@
+<div  align="center">
+  
 # LinkSeg: Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis
-This repository contains a [PyTorch](http://pytorch.org/) implementation of the paper [Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis](https://hal.science/hal-04665063/) 
-presented at ISMIR 2024.
+  
+[Morgan Buisson](https://morgan76.github.io/)<sup>1</sup>,
+[Brian McFee](https://brianmcfee.net/)<sup>2,3</sup>,
+[Slim Essid](https://slimessid.github.io/research/)<sup>1</sup>,
+<sup>1</sup>  LTCI, Télécom Paris, Institut Polytechnique de Paris, France, <sup>2</sup>  Music and Audio Research Laboratory, New York University, USA, <sup>3</sup> Center for Data Science, New York University, USA
+  
+<p align="center">
+<img src="linkseg.png" width="500">
+</p align="center">
+</div>
+
+This repository contains the official [PyTorch](http://pytorch.org/) implementation of the paper [Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis](https://hal.science/hal-04665063/) 
+presented at ISMIR 2024. 
 
 ## Table of Contents
 0. [Requirements](#requirements)
@@ -45,9 +58,14 @@ python train.py --data_path {dataset_path} --nb_section_labels 9
 ``` 
 
 ## Inference
-To make predictions using a trained model, run:
+To make predictions using a trained model, first make sure that the test dataset is processed: 
 ```
-python predict.py --test_data_path {dataset_path} --model_name {path_to_model}
+python preprocess_data.py --data_path {test_dataset_path}
+```
+
+Then run:
+```
+python predict.py --test_data_path {test_dataset_path} --model_name {path_to_model}
 ```
 
 To use the 7-class pre-trained model (on a 75% split of Harmonix), run:
