@@ -59,7 +59,7 @@ By default, segmentation predictions will be saved in .jams file format under th
 
 ## Citing
 ```
-@inproceedings{buisson2022learning,
+@inproceedings{buisson:hal-04665063,
   title={Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis},
   author={Buisson, Morgan and McFee, Brian and Essid, Slim},
   booktitle={International Society for Music Information Retrieval (ISMIR)},
