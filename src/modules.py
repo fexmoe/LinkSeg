@@ -204,9 +204,9 @@ class ConvNetSSM(nn.Module):
     """
     def __init__(self, input_channels, output_channels, shape, dropout=.2):
         super(ConvNetSSM, self).__init__()
+        
         self.input_bn = nn.BatchNorm2d(input_channels, affine=False, track_running_stats=False)
     
-        self.relu = nn.ELU()
         self.conv1 = Conv_2d(input_channels, output_channels, shape=shape, dilation=1, dropout=dropout)
         self.conv2 = Conv_2d(output_channels, output_channels, shape=shape, dilation=2, dropout=dropout)
         self.conv3 = Conv_2d(output_channels, output_channels, shape=shape, dilation=4, dropout=dropout)
@@ -256,8 +256,8 @@ class GCN_DENSE(nn.Module):
 class EGAT(nn.Module):
     def __init__(self, in_size, feat_size, heads, feat_dropout=.1, attn_dropout=.1):
         super().__init__()
-        self.activation = nn.ELU()
 
+        # two-layer GAT
         self.layer_1 = dgl.nn.pytorch.conv.EdgeGATConv(in_feats=in_size, 
                                                        edge_feats=feat_size, 
                                                        out_feats=in_size, 
@@ -282,6 +282,7 @@ class EGAT(nn.Module):
                                                        allow_zero_in_degree=False, 
                                                        bias=True)
         
+        self.activation = nn.ELU()
 
     def forward(self, g, h, edge_feat):
         h = self.layer_1(g, h, edge_feat) 
