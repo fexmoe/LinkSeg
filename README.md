@@ -81,6 +81,15 @@ python predict.py --test_data_path {dataset_path} --model_name ../data/model_7_c
 
 By default, segmentation predictions will be saved in .jams file format under the dataset/predictions/ directory. 
 
+
+## Segmentation Example
+
+<div  align="center">
+<p align="center">
+<img src="segmentation_example_midnight_city.png" width="500">
+</p align="center">
+</div>
+
 ## Citing
 ```
 @inproceedings{buisson:hal-04665063,
