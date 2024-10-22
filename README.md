@@ -15,9 +15,9 @@
 This repository contains the official [PyTorch](http://pytorch.org/) implementation of the paper [Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis](https://hal.science/hal-04665063/) 
 presented at ISMIR 2024. 
 
-We introduce **LinkSeg**, a novel approach to music structure analysis based on pairwise link predictions. This method consists in predicting whether any pair of time instants within a track belongs to the same structural element (segment or section). This problem comes down to classifying each individual component (i.e. link) of the track's self-similarity matrix ("same-segment", "same-section" or "different section"). The link features calculated from this task are then combined with frame-wise features through a graph attention module to effectively predict segment boundaries and musical section labels. 
+We introduce **LinkSeg**, a novel approach to music structure analysis based on pairwise link predictions. This method consists in predicting whether any pair of time instants within a track belongs to the same structural element (segment or section). This problem comes down to classifying each individual component (i.e. link) of the track's self-similarity matrix into one of the three categories: "same-segment", "same-section" or "different section". The link features calculated from this task are then combined with frame-wise features through a graph attention module to effectively predict segment boundaries and musical section labels. 
 
-This project is focused on the segmentation of popular music genres, predicted section labels follow a 7-class taxonomy containing: "Intro", "Verse", "Chorus", "Bridge", "Instrumental", "Outro" and "Silence". 
+This project is focused on the segmentation of popular music genres, therefore, predicted section labels follow a 7-class taxonomy containing: "Intro", "Verse", "Chorus", "Bridge", "Instrumental", "Outro" and "Silence". 
 
 This repository provides code for training the system from scratch and some pre-trained checkpoints for predicting the structure of new tracks. 
 
@@ -86,9 +86,19 @@ By default, segmentation predictions will be saved in .jams file format under th
 
 <div  align="center">
 <p align="center">
-<img src="segmentation_example_midnight_city.png" width="500">
+<img src="segmentation_example_midnight_city.png" width="1000">
 </p align="center">
 </div>
+
+Segmentation results for the track ***M83 - Midnight City*** from the Harmonix dataset. The top two rows display the class activation and boundary curves over time. The bottom rows show the final predictions and the reference annotations. Black and red dotted lines indicate predicted and annotated segment boundaries.
+
+<div  align="center">
+<p align="center">
+<img src="ssm_example_midnight_city.png" width="800">
+</p align="center">
+</div>
+
+The self-similarity matrix of the track ***M83 - Midnight City*** obtained from the output embeddings of the graph attention module. Red dashed lines indicate annotated (left) and predicted (right) segment boundaries.
 
 ## Citing
 ```
