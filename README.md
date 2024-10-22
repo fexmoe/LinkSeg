@@ -94,7 +94,7 @@ Segmentation results for the track ***M83 - Midnight City*** from the Harmonix d
 
 <div  align="center">
 <p align="center">
-<img src="ssm_example_midnight_city.png" width="1000">
+<img src="ssm_example_midnight_city.png" width="800">
 </p align="center">
 </div>
 
