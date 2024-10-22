@@ -86,7 +86,7 @@ By default, segmentation predictions will be saved in .jams file format under th
 
 <div  align="center">
 <p align="center">
-<img src="segmentation_example_midnight_city.png" width="500">
+<img src="segmentation_example_midnight_city.png" width="1000">
 </p align="center">
 </div>
 
