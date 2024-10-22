@@ -15,7 +15,7 @@
 This repository contains the official [PyTorch](http://pytorch.org/) implementation of the paper [Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis](https://hal.science/hal-04665063/) 
 presented at ISMIR 2024. 
 
-We introduce **LinkSeg**, a novel approach to music structure analysis based on pairwise link predictions. This method consists in predicting whether any pair of time instants within a track belongs to the same structural element (segment or section). This problem comes down to classifying each individual component (i.e. link) of the track's self-similarity matrix ("same-segment", "same-section" or "different section"). The link features calculated from this task are then combined with frame-wise features through a graph attention module to effectively predict segment boundaries and musical section labels. 
+We introduce **LinkSeg**, a novel approach to music structure analysis based on pairwise link predictions. This method consists in predicting whether any pair of time instants within a track belongs to the same structural element (segment or section). This problem comes down to classifying each individual component (i.e. link) of the track's self-similarity matrix into one of the three categories: "same-segment", "same-section" or "different section". The link features calculated from this task are then combined with frame-wise features through a graph attention module to effectively predict segment boundaries and musical section labels. 
 
 This project is focused on the segmentation of popular music genres, predicted section labels follow a 7-class taxonomy containing: "Intro", "Verse", "Chorus", "Bridge", "Instrumental", "Outro" and "Silence". 
 
