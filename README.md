@@ -90,7 +90,7 @@ By default, segmentation predictions will be saved in .jams file format under th
 </p align="center">
 </div>
 
-Segmentation results for the track *M83 - Midnight City* from the Harmonix dataset. The top two rows display the class activation and boundary curves over time. The bottom rows show the final predictions and the reference annotations. Black and red dotted lines indicate predicted and annotated segment boundaries.
+Segmentation results for the track ***M83 - Midnight City*** from the Harmonix dataset. The top two rows display the class activation and boundary curves over time. The bottom rows show the final predictions and the reference annotations. Black and red dotted lines indicate predicted and annotated segment boundaries.
 
 ## Citing
 ```
