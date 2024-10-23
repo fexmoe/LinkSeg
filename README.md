@@ -101,11 +101,11 @@ Segmentation results for the track ***M83 - Midnight City*** from the Harmonix d
 The self-similarity matrix of the track ***M83 - Midnight City*** obtained from the output embeddings of the graph attention module. Red dashed lines indicate annotated (left) and predicted (right) segment boundaries.
 
 ## Citing
-```
+```bib
 @inproceedings{buisson:hal-04665063,
   title={Using Pairwise Link Prediction and Graph Attention Networks for Music Structure Analysis},
   author={Buisson, Morgan and McFee, Brian and Essid, Slim},
-  booktitle={International Society for Music Information Retrieval (ISMIR)},
+  booktitle={Proceedings of the 25th International Society for Music Information Retrieval Conference (ISMIR)},
   year={2024}
 }
 ```
