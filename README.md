@@ -48,14 +48,14 @@ dataset/
 
 To preprocess some dataset, run:
 ```
-python preprocess_data.py --data_path {dataset_path}
+python preprocess_data.py --data_path <dataset_path>
 ```
 This will handle the creation of [`dataset/audio_npy/`](dataset/audio_npy/)  and [`dataset/features/`](dataset/features/) files. 
 
 ## Training
 To train a new LinkSeg model, run:
 ```
-python train.py --data_path {dataset_path}
+python train.py --data_path <dataset_path>
 ```
 
 The default label taxonomy contains 7 section labels: Silence, Intro, Verse, Chorus, Bridge, Instrumental and Outro. A second taxonomy containing Pre-chorus and Post-chorus labels can be used:
