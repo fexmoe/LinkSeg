@@ -80,7 +80,7 @@ To use the 7-class pre-trained model (on a 75% split of Harmonix), run:
 python predict.py --test_data_path <dataset_path> --model_name ../data/model_7_classes.pt
 ```
 
-By default, segmentation predictions will be saved in .jams file format under the [`dataset/predictions/`](dataset/predictions/) directory. 
+By default, segmentation predictions will be saved in [.jams](https://jams.readthedocs.io/en/stable/quickstart.html) file format under the [`dataset/predictions/`](dataset/predictions/) directory. 
 
 
 ## Segmentation Example
