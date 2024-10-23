@@ -1,5 +1,4 @@
 import torch
-import torch.nn.functional as F
 import logging
 import numpy as np
 import pytorch_lightning as pl
@@ -143,8 +142,8 @@ class PLModel(pl.LightningModule):
 
     def on_validation_epoch_end(self):
         out_peaks = apply_async_with_callback_peaks(self.bound_curves_list, self.class_curves_list, self.tracklist, 0, self.max_len, self.nb_section_labels)
-        F1_peaks, P3_peaks, R3_peaks, F3_peaks, PFC, NCE = np.nanmean(out_peaks[:,2]), np.nanmean(out_peaks[:,3]), np.nanmean(out_peaks[:,4]), np.nanmean(out_peaks[:,5]), np.nanmean(out_peaks[:,6]), np.nanmean(out_peaks[:,7])
-        self.log('valid_HRF', (F1_peaks+F3_peaks+PFC+NCE)/4, sync_dist=True)    
+        F1, F3, PFC, NCE = np.nanmean(out_peaks[:,2]), np.nanmean(out_peaks[:,5]), np.nanmean(out_peaks[:,6]), np.nanmean(out_peaks[:,7])
+        self.log('valid_HRF', (F1+F3+PFC+NCE)/4, sync_dist=True)    
         self.log('valid_loss', np.mean(self.valid_loss_list), sync_dist=True)
         self.embeddings_list = []
         self.bound_curves_list = []
@@ -169,13 +168,6 @@ class PLModel(pl.LightningModule):
         self.bound_curves_list.append([track[0], bound_pred.cpu().detach().numpy()])
         self.class_curves_list.append([labels_pred.cpu().detach().numpy()])
         self.tracklist.append(track)
-
-
-    #def on_test_epoch_end(self):
-    #    out_peaks = apply_async_with_callback_peaks(self.bound_curves_list, self.class_curves_list, self.tracklist, 0, self.max_len)
-    #    F1_peaks, P3_peaks, R3_peaks, F3_peaks = np.nanmean(out_peaks[:,2]), np.nanmean(out_peaks[:,3]), np.nanmean(out_peaks[:,4]), np.nanmean(out_peaks[:,5])
-    #    self.log('valid_HRF', (F1_peaks+F3_peaks)/2, sync_dist=True)    
-    #    self.log('valid_loss', np.mean(self.valid_loss_list), sync_dist=True)
 
 
     def configure_optimizers(self):
