@@ -50,7 +50,7 @@ To preprocess some dataset, run:
 ```
 python preprocess_data.py --data_path {dataset_path}
 ```
-This will handle the creation of /audio_npy and /features files. 
+This will handle the creation of [`dataset/audio_npy/`](dataset/audio_npy/)  and [`dataset/features/`](dataset/features/) files. 
 
 ## Training
 To train a new LinkSeg model, run:
@@ -60,26 +60,26 @@ python train.py --data_path {dataset_path}
 
 The default label taxonomy contains 7 section labels: Silence, Intro, Verse, Chorus, Bridge, Instrumental and Outro. A second taxonomy containing Pre-chorus and Post-chorus labels can be used:
 ```
-python train.py --data_path {dataset_path} --nb_section_labels 9
+python train.py --data_path <dataset_path> --nb_section_labels 9
 ``` 
 
 ## Inference
 To make predictions using a trained model, first make sure that the test dataset is processed: 
 ```
-python preprocess_data.py --data_path {test_dataset_path}
+python preprocess_data.py --data_path <test_dataset_path>
 ```
 
 Then run:
 ```
-python predict.py --test_data_path {test_dataset_path} --model_name {path_to_model}
+python predict.py --test_data_path <test_dataset_path> --model_name <path_to_model>
 ```
 
 To use the 7-class pre-trained model (on a 75% split of Harmonix), run:
 ```
-python predict.py --test_data_path {dataset_path} --model_name ../data/model_7_classes.pt
+python predict.py --test_data_path <dataset_path> --model_name ../data/model_7_classes.pt
 ```
 
-By default, segmentation predictions will be saved in .jams file format under the dataset/predictions/ directory. 
+By default, segmentation predictions will be saved in .jams file format under the [`dataset/predictions/`](dataset/predictions/) directory. 
 
 
 ## Segmentation Example
