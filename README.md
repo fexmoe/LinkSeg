@@ -30,9 +30,24 @@ This repository provides code for training the system from scratch along with so
 0. [Contact](#contact)
 
 ## Requirements
+
+Install FFmpeg
+For ubuntu:
+
+```shell
+sudo apt install ffmpeg
+```
+
+For macOS:
+
+```shell
+brew install ffmpeg
+```
+
 ```
 conda create -n YOUR_ENV_NAME python=3.8
 conda activate YOUR_ENV_NAME
+pip install git+https://github.com/CPJKU/madmom # install madmom from github
 pip install -r requirements.txt
 cd src/
 ```
