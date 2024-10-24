@@ -44,7 +44,7 @@ brew install ffmpeg
 
 Create new environment and install dependencies:
 ```
-conda create -n YOUR_ENV_NAME python=3.8
+conda create -n YOUR_ENV_NAME python=3.9
 conda activate YOUR_ENV_NAME
 pip install git+https://github.com/CPJKU/madmom # install madmom from github
 pip install -r requirements.txt
