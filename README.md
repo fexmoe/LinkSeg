@@ -19,7 +19,7 @@ We introduce **LinkSeg**, a novel approach to music structure analysis based on 
 
 This project is focused on the segmentation of popular music genres, therefore, predicted section labels follow a 7-class taxonomy containing: "Intro", "Verse", "Chorus", "Bridge", "Instrumental", "Outro" and "Silence". 
 
-This repository provides code for training the system from scratch and some pre-trained checkpoints for predicting the structure of new tracks. 
+This repository provides code for training the system from scratch along with some pre-trained checkpoints for predicting the structure of new tracks. 
 
 ## Table of Contents
 0. [Requirements](#requirements)
