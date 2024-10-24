@@ -42,6 +42,7 @@ For macOS:
 brew install ffmpeg
 ```
 
+Create new environment and install dependencies:
 ```
 conda create -n YOUR_ENV_NAME python=3.8
 conda activate YOUR_ENV_NAME
