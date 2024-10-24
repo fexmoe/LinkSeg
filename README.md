@@ -30,9 +30,7 @@ This repository provides code for training the system from scratch along with so
 0. [Contact](#contact)
 
 ## Requirements
-
-Install FFmpeg
-For ubuntu:
+Install FFmpeg for ubuntu:
 
 ```shell
 sudo apt install ffmpeg
