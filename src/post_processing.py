@@ -96,10 +96,7 @@ def post_process(audio_file, beat_times, duration, bound_curve, class_curves):
     
     bound_curve = bound_curve.reshape(-1)
 
-    if 'Harmonix' in audio_file:
-        est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=10, max_future=8, max_past=8, tau=0)
-    else:
-        est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=12, max_future=10, max_past=8, tau=0)
+    est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=12, max_future=10, max_past=8, tau=0)
 
     if len(est_idxs)>0:
         if est_idxs[0] != 0:
