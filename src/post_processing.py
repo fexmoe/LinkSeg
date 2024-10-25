@@ -115,7 +115,7 @@ def post_process(audio_file, beat_times, duration, bound_curve, class_curves):
         bound_left = est_idxs_[i]
         bound_right = est_idxs_[i+1]
         class_predictions = np.argmax(class_curves[bound_left:bound_right], axis=-1)
-        est_labels.append(mode(class_predictions)[0][0])
+        est_labels.append(mode(class_predictions)[0])
 
     est_idxs = [0] + [beat_times[int(i)] for i in est_idxs] + [duration]
 
