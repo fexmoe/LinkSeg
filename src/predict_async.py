@@ -89,7 +89,7 @@ def eval_segmentation_peak(audio_file, bound_curve, class_curve, level, max_len,
         bound_left = est_idxs_[i]
         bound_right = est_idxs_[i+1]
         class_predictions = np.argmax(class_curve[bound_left:bound_right], axis=-1)
-        est_labels.append(mode(class_predictions)[0][0])
+        est_labels.append(mode(class_predictions)[0])
 
     
     
