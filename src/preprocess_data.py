@@ -30,8 +30,8 @@ def madmom_beats(file_struct, y_, sr):
         sr_ = 44100
 
     audio_duration = librosa.get_duration(y_, sr=sr_)
-    proc = madmom.features.beats.DBNBeatTrackingProcessor(fps=100)
-    act = madmom.features.beats.TCNBeatProcessor()(y_)
+    proc = madmom.features.beats.BeatTrackingProcessor(fps=100)
+    act = madmom.features.beats.RNNBeatProcessor()(y_)
     beat_times = np.asarray(proc(act))
     if beat_times[0] > 0:
         beat_times = np.insert(beat_times, 0, 0)
