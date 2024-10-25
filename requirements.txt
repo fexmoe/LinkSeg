@@ -1,4 +1,4 @@
-dgl==2.2.0
+dgl==2.1.0
 einops==0.8.0
 jams==0.3.4
 librosa==0.10.2.post1
