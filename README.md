@@ -65,7 +65,7 @@ To preprocess some dataset, run:
 ```
 python preprocess_data.py --data_path <dataset_path>
 ```
-This will handle the creation of [`dataset/audio_npy/`](dataset/audio_npy/)  and [`dataset/features/`](dataset/features/) files. 
+This will handle the creation of [`dataset/audio_npy/`](dataset/audio_npy/) (beat estimation) and [`dataset/features/`](dataset/features/) files (conversion to numpy files). 
 
 ## Training
 To train a new LinkSeg model, run:
