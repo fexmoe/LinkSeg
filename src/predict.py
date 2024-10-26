@@ -125,7 +125,7 @@ def predict_from_files(args):
                 # compute the predictions
                 embeddings, bound_curve, class_curves, A_pred = model(x)
                 # post-process predictions (peak picking & majority vote)
-                est_times, est_labels = post_process(file, beat_times, duration, bound_curve, class_curves)
+                est_times, est_labels = post_process(file, beat_times, duration, bound_curve, class_curves, args.max_past, args.max_future, args.tau)
                 # write predictions to jams format
                 print(est_times, est_labels)
                 export_to_jams(file_struct, duration, est_times, est_labels)
@@ -176,6 +176,11 @@ if __name__ == '__main__':
     parser.add_argument('--dropout_gnn', type=float, default=.1)
     parser.add_argument('--dropout_cnn', type=float, default=.2)
     parser.add_argument('--dropout_egat', type=float, default=.5)
+
+    # peak-picking parameters
+    parser.add_argument('--max_past', type=int, default=6)
+    parser.add_argument('--max_future', type=int, default=6)
+    parser.add_argument('--tau', type=float, default=0)
 
     # paths
     parser.add_argument('--test_data_path', type=str)
