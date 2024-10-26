@@ -62,7 +62,7 @@ def get_indices(beat_times, index, avg_future=6, avg_past=12):
 
 
 
-def pick_peaks_times(nc, beat_times, avg_future=12, avg_past=12, max_future=12, max_past=12, tau=0):
+def pick_peaks_times(nc, beat_times, max_future=12, max_past=12, tau=0):
     
     peaks = []
     for i in range(1, nc.shape[0] - 1):
@@ -77,11 +77,7 @@ def pick_peaks_times(nc, beat_times, avg_future=12, avg_past=12, max_future=12, 
             max_right = 10
             
         if max_left < nc[i] and nc[i] > max_right:
-            limit_left, limit_right = get_indices(beat_times, i, avg_future, avg_past)
-            
-            mean_left = np.mean([nc[j] for j in range(i, limit_left, -1)])
-            mean_right = np.mean([nc[j] for j in range(i, limit_right)])
-            if nc[i] > mean_left and nc[i] > mean_right and nc[i]>tau:
+            if nc[i]>tau:
                 peaks.append(i)
     return peaks
 
@@ -96,7 +92,7 @@ def post_process(audio_file, beat_times, duration, bound_curve, class_curves):
     
     bound_curve = bound_curve.reshape(-1)
 
-    est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=12, max_future=6, max_past=6, tau=0)
+    est_idxs = pick_peaks_times(bound_curve, beat_times, max_future=6, max_past=6, tau=0)
 
     if len(est_idxs)>0:
         if est_idxs[0] != 0:
