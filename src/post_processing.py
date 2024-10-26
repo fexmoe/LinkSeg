@@ -83,7 +83,7 @@ def pick_peaks_times(nc, beat_times, max_future=12, max_past=12, tau=0):
 
 
 
-def post_process(audio_file, beat_times, duration, bound_curve, class_curves):
+def post_process(audio_file, beat_times, duration, bound_curve, class_curves, max_past, max_future, tau):
 
     # We stack adjacent frames for boundary predictions, so we average adjacent beat times
     beat_times = [(beat_times[i] + beat_times[i+1])/2 for i in range(len(beat_times)-1)]
@@ -92,7 +92,7 @@ def post_process(audio_file, beat_times, duration, bound_curve, class_curves):
     
     bound_curve = bound_curve.reshape(-1)
 
-    est_idxs = pick_peaks_times(bound_curve, beat_times, max_future=6, max_past=6, tau=0)
+    est_idxs = pick_peaks_times(bound_curve, beat_times, max_future=max_future, max_past=max_past, tau=tau)
 
     if len(est_idxs)>0:
         if est_idxs[0] != 0:
