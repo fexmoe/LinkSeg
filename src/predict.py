@@ -178,8 +178,8 @@ if __name__ == '__main__':
     parser.add_argument('--dropout_egat', type=float, default=.5)
 
     # peak-picking parameters
-    parser.add_argument('--max_past', type=int, default=6)
-    parser.add_argument('--max_future', type=int, default=6)
+    parser.add_argument('--max_past', type=float, default=6)
+    parser.add_argument('--max_future', type=float, default=6)
     parser.add_argument('--tau', type=float, default=0)
 
     # paths
