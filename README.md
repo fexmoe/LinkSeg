@@ -96,7 +96,7 @@ python predict.py --test_data_path <dataset_path> --model_name ../data/model_7_c
 
 By default, segmentation predictions will be saved in [.jams](https://jams.readthedocs.io/en/stable/quickstart.html) file format under the [`dataset/predictions/`](dataset/predictions/) directory. 
 
-Keep in mind that boundary predictions are calculated from two consecutive times frames $x^{\prime \prime}_{i}$, $x_{i+1}$ and the features $e'_{i,i+1} of the link connecting them. Therefore, boundary predictions fall in-between beat locations. 
+Keep in mind that boundary predictions are calculated from two consecutive times frames $x^{\prime}_{i}$, $x_{i+1}$ and the features $e'_{i,i+1} of the link connecting them. Therefore, boundary predictions fall in-between beat locations. 
 
 
 ## Segmentation Example
