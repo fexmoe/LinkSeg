@@ -94,6 +94,11 @@ To use the 7-class pre-trained model (on a 75% split of Harmonix), run:
 python predict.py --test_data_path <dataset_path> --model_name ../data/model_7_classes.pt
 ```
 
+To use the 9-class pre-trained model, run:
+```
+python predict.py --test_data_path <dataset_path> --model_name ../data/model_9_classes.pt
+```
+
 By default, segmentation predictions will be saved in [JAMS](https://jams.readthedocs.io/en/stable/quickstart.html) file format under the [`dataset/predictions/`](dataset/predictions/) directory. 
 
 Keep in mind that boundary predictions are calculated from the features of two consecutive time frames $x\prime \prime_{i}$, $x\prime \prime_{i+1}$ and the features $e\prime_{i,i+1}$ of the link connecting them. Therefore, boundary predictions fall **in-between** consecutive estimated beat locations. 
