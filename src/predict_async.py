@@ -67,12 +67,9 @@ def eval_segmentation_peak(audio_file, bound_curve, class_curve, level, max_len,
     
     bound_curve = bound_curve.reshape(-1)
 
-    #if 'Harmonix' in audio_file or 'BeatlesTUT' in audio_file:
-    #    est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=10, max_future=8, max_past=8, tau=0)
-    #else:
-    est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=12, max_future=3, max_past=3, tau=0.1)
-    #est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=12, max_future=1, max_past=1, tau=0.1)
-    #est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=12, max_future=6, max_past=6, tau=0)
+    
+    
+    est_idxs = pick_peaks_times(bound_curve, beat_times, avg_future=12, avg_past=12, max_future=6, max_past=6, tau=0)
     
         
     if len(est_idxs)>0:
