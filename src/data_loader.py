@@ -83,9 +83,7 @@ class GNN_dset(torch.utils.data.Dataset):
         track = self.tracklist[index]
         file_struct =  FileStruct(track)
         beat_frames = self.beat_frames_list[index]
-        
-        beat_times = librosa.frames_to_time(beat_frames, sr=22050, hop_length=256)
-        beat_frames = librosa.time_to_frames(beat_times, sr=22050, hop_length=1)
+        beat_frames = [i*256 for i in beat_frames]
 
         (SSM_segment, SSM_merged) = self.SSMS[index]
         labels = self.labels[index]
