@@ -94,6 +94,7 @@ def eval_segmentation_peak(audio_file, bound_curve, class_curve, level, max_len,
     
     est_inter = times_to_intervals(est_idxs)
 
+    # We discard the first and last boundaries (trim=True), corresponding to start and end of the track
     scores = mir_eval.segment.evaluate(ref_inter, ref_labels, est_inter, est_labels, trim=True)
     
     return audio_file, scores
