@@ -209,27 +209,6 @@ class FileStruct:
     def get_feat_filename(self, feat_id):
         return self.ds_path.joinpath('features', feat_id,
                                      self.track_name + '.npy')
-    
-    def get_matrix_filename(self, type, double=False):
-        if type == 'pos':
-            if double:
-                return self.pos_matrix_file_double
-            else:
-                return self.pos_matrix_file
-        elif type == 'neg':
-            if double:
-                return self.neg_matrix_file_double
-            else:
-                return self.neg_matrix_file
-        elif type == 'pos_1':
-            return self.pos_matrix_file_double_1
-        elif type == 'pos_9':
-            return self.pos_matrix_file_double_9
-        elif type == 'neg_1':
-            return self.neg_matrix_file_double_1
-        elif type == 'neg_9':
-            return self.neg_matrix_file_double_9
-
 
 def clean_tracklist_audio(data_path, annotations=None, tracklist_=[]):
     if tracklist_ == []:
