@@ -133,4 +133,4 @@ The self-similarity matrix of the track ***M83 - Midnight City*** obtained from 
 ```
 
 ## Contact
-morgan.buisson@telecom-paris.fr
+morgan.buisson76@gmail.com
