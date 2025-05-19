@@ -1,5 +1,5 @@
 import argparse
-#import madmom
+# import madmom
 import os
 import numpy as np
 import librosa
@@ -43,51 +43,62 @@ def madmom_beats(file_struct, y_, sr):
     beats = librosa.time_to_frames(beat_times, sr=22050, hop_length=256)
     return beats, audio_duration
 """
+
+
 def librosa_beats(file_struct, y_, sr):
-    
+    # Handle MP3 conversion if needed
     if '.mp3' in str(file_struct.audio_file):
         song_name = str(file_struct.audio_file).split('.mp3')[0]
-        dst = os.path.join(file_struct.ds_path, song_name+'.wav')                                                  
+        dst = os.path.join(file_struct.ds_path, song_name+'.wav')
         sound = AudioSegment.from_mp3(file_struct.audio_file)
         sound.export(dst, format="wav")
         audiofile = dst
         os.remove(file_struct.audio_file)
         file_struct.audio_file = audiofile
         y_, sr = librosa.load(audiofile, mono=True)
-    
-    # Get the audio duration
-    audio_duration = librosa.get_duration(y_, sr=sr)
-    
-    # Use librosa's beat detection
-    tempo, beat_frames = librosa.beat.beat_track(y=y_, sr=sr, hop_length=256)
-    
-    # Convert beat frames to times
-    beat_times = librosa.frames_to_time(beat_frames, sr=sr, hop_length=256)
-    
-    # Add a beat at time 0 if the first beat is not at the beginning
-    if len(beat_times) > 0 and beat_times[0] > 0:
-        beat_times = np.insert(beat_times, 0, 0)
-    
-    # Remove beats beyond the audio duration
-    new_beats = []
-    for i in range(len(beat_times)):
-        if beat_times[i] < audio_duration:
-            new_beats.append(beat_times[i])
-    beat_times = new_beats
-    
-    # Convert times back to frames at the target sample rate and hop length
+
+    # Resample to 44100 if needed
+    if sr != 44100:
+        y_ = librosa.resample(y_, orig_sr=sr, target_sr=44100)
+        sr_ = 44100
+    else:
+        sr_ = sr
+
+    audio_duration = librosa.get_duration(y=y_, sr=sr_)
+
+    # Compute onset envelope and estimate beats
+    onset_env = librosa.onset.onset_strength(y=y_, sr=sr_)
+    tempo, beat_frames = librosa.beat.beat_track(
+        onset_envelope=onset_env, sr=sr_, units='frames')
+
+    # Convert frames to times
+    beat_times = librosa.frames_to_time(beat_frames, sr=sr_, hop_length=512)
+
+    # Ensure there's at least one beat at 0.0 if needed
+    if len(beat_times) == 0:
+        beat_times = np.array([0.0])
+    elif beat_times[0] > 0:
+        beat_times = np.insert(beat_times, 0, 0.0)
+
+    # Filter beats beyond audio duration
+    beat_times = beat_times[beat_times < audio_duration]
+
+    # Convert to frames using original parameters (matches madmom's 100fps conversion)
     beats = librosa.time_to_frames(beat_times, sr=22050, hop_length=256)
-    
+
     return beats, audio_duration
 
 
 def compute_beats(file_struct, y, sr):
+
     beat_frames, duration = librosa_beats(file_struct, y, sr)
+    print('Writing beats to', file_struct.beat_file)
     write_beats(file_struct, beat_frames, duration)
 
 
 def process_beats(file_struct):
     if not os.path.isfile(file_struct.beat_file):
+        print('Computing beats for', file_struct.audio_file)
         y, sr = librosa.load(file_struct.audio_file, mono=True)
         compute_beats(file_struct, y, sr)
     else:
@@ -96,7 +107,8 @@ def process_beats(file_struct):
 
 
 def get_paths(ds_path, config):
-    tracklist = librosa.util.find_files(os.path.join(ds_path, 'audio'), ext=config.dataset.audio_exts)
+    tracklist = librosa.util.find_files(os.path.join(
+        ds_path, 'audio'), ext=config.dataset.audio_exts)
     npy_path = os.path.join(ds_path, 'audio_npy')
     if not os.path.exists(npy_path):
         os.makedirs(npy_path)
@@ -120,7 +132,7 @@ def wav_conversion(file):
         song_name = str(file).split('.mp3')[0]
         file_struct = FileStruct(file)
         dst = song_name+'.wav'
-        # convert wav to mp3                                                            
+        # convert wav to mp3
         sound = AudioSegment.from_mp3(file_struct.audio_file)
         sound.export(dst, format="wav")
         os.remove(file_struct.audio_file)
@@ -130,14 +142,15 @@ def wav_conversion(file):
         return file
 
 
-
 def process_track(track):
     file_struct = FileStruct(track)
     process_audio(file_struct)
     process_beats(file_struct)
 
+
 def preprocess_data_(args):
-    tracklist = librosa.util.find_files(os.path.join(args.data_path, 'audio'), ext=['wav', 'mp3', 'aiff', 'flac'])
+    tracklist = librosa.util.find_files(os.path.join(
+        args.data_path, 'audio'), ext=['wav', 'mp3', 'aiff', 'flac'])
     pool = mp.Pool(mp.cpu_count())
     funclist = []
     for file in tqdm(tracklist):
@@ -146,8 +159,10 @@ def preprocess_data_(args):
     pool.close()
     pool.join()
 
+
 def preprocess_data(args):
-    tracklist = librosa.util.find_files(os.path.join(args.data_path, 'audio'), ext=['wav', 'mp3', 'aiff', 'flac'])
+    tracklist = librosa.util.find_files(os.path.join(
+        args.data_path, 'audio'), ext=['wav', 'mp3', 'aiff', 'flac'])
     pool = mp.Pool(mp.cpu_count())
     npy_path = os.path.join(args.data_path, 'audio_npy')
     if not os.path.exists(npy_path):
@@ -161,7 +176,8 @@ def preprocess_data(args):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--data_path', type=str)
     args = parser.parse_args()
     print(args)

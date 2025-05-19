@@ -11,10 +11,12 @@ RUN conda install -y python=3.9 \
     && pip install --no-cache-dir pipx \
     && pipx uninstall pipx \
     && pipx reinstall-all
+RUN conda install ffmpeg
 #RUN conda install -y python=3.6 \
 #    && pip install --no-cache-dir pipx \
 #    && pipx reinstall-all
-RUN pip install -r requirements.txt
+COPY ../requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
 
 # RUN cd src/
 
