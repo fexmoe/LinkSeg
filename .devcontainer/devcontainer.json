@@ -3,7 +3,7 @@
   "name": "Python 3.9 + madmom Dev Container",
   "build": {
     "dockerfile": "Dockerfile",
-    "context": "."
+    "context": ".."
   },
   "settings": {
     // Use the conda Python interpreter by default
