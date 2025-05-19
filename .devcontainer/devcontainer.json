@@ -1,0 +1,19 @@
+// devcontainer.json
+{
+  "name": "Python 3.9 + madmom Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "settings": {
+    // Use the conda Python interpreter by default
+    "python.defaultInterpreterPath": "/opt/conda/envs/dev/bin/python"
+  },
+  "extensions": [
+    "ms-python.python"
+  ],
+  // Run commands once the container is built
+  "postCreateCommand": "conda activate dev",
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspace"
+}
