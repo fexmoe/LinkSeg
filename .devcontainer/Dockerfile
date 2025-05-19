@@ -12,6 +12,7 @@ RUN apt-get update \
       wget \
       bzip2 \
       ca-certificates \
+      build-essential \
  && rm -rf /var/lib/apt/lists/*
 
 # 2) Install Miniconda
@@ -34,12 +35,15 @@ SHELL ["conda", "run", "-n", "dev", "/bin/bash", "-lc"]
 
 # 4) Install Python deps (madmom + requirements.txt)
 #    Assumes your requirements.txt lives at the workspace root
+# Pre-install Cython & NumPy (w/ SciPy) so madmom’s Cython compile sees the headers,
+# then install madmom and the rest of your requirements:
 COPY requirements.txt /workspace/requirements.txt
-RUN pip install git+https://github.com/CPJKU/madmom \
+RUN pip install cython numpy scipy \
+ && pip install git+https://github.com/CPJKU/madmom \
  && pip install -r /workspace/requirements.txt
 
 # 5) Set the working directory
-WORKDIR /workspace/src
+WORKDIR /workspace
 
 # (Optional) default command
 CMD ["bash"]
