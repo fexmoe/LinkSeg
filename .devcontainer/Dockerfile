@@ -1,54 +1,16 @@
-# Dockerfile
-FROM ubuntu:22.04
+FROM mcr.microsoft.com/devcontainers/miniconda:1-3
 
-# avoid interactive prompts
-ENV DEBIAN_FRONTEND=noninteractive
+# Copy environment.yml (if found) to a temp location so we update the environment. Also
+# copy "noop.txt" so the COPY instruction does not fail if no environment.yml exists.
+COPY environment.yml* .devcontainer/noop.txt /tmp/conda-tmp/
+RUN if [ -f "/tmp/conda-tmp/environment.yml" ]; then umask 0002 && /opt/conda/bin/conda env update -n base -f /tmp/conda-tmp/environment.yml; fi \
+    && rm -rf /tmp/conda-tmp
 
-# 1) Install system deps: git, ffmpeg, wget, bzip2
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-      git \
-      ffmpeg \
-      wget \
-      bzip2 \
-      ca-certificates \
-      build-essential \
- && rm -rf /var/lib/apt/lists/*
+# [Optional] Uncomment to install a different version of Python than the default
+# RUN conda install -y python=3.6 \
+#     && pip install --no-cache-dir pipx \
+#     && pipx reinstall-all
 
-# 2) Install Miniconda
-ENV CONDA_DIR=/opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    -O /tmp/miniconda.sh \
-&& bash /tmp/miniconda.sh -b -p $CONDA_DIR \
-&& rm /tmp/miniconda.sh \
-&& $CONDA_DIR/bin/conda clean -afy
-
-# Make conda available
-ENV PATH="$CONDA_DIR/bin:$PATH"
-
-# 3) Create and prepare Python 3.9 env called "dev"
-RUN conda create -y -n dev python=3.9 \
- && conda clean -afy
-
-# Use conda’s shell init so that `conda activate` works
-SHELL ["conda", "run", "-n", "dev", "/bin/bash", "-lc"]
-
-RUN conda install -y -n dev \
-      cython \
-      numpy \
-      scipy \
- && conda clean -afy
-
-# 4) Install Python deps (madmom + requirements.txt)
-#    Assumes your requirements.txt lives at the workspace root
-# Pre-install Cython & NumPy (w/ SciPy) so madmom’s Cython compile sees the headers,
-# then install madmom and the rest of your requirements:
-COPY requirements.txt /workspace/requirements.txt
-RUN pip install git+https://github.com/CPJKU/madmom \
- && pip install -r /workspace/requirements.txt
-
-# 5) Set the working directory
-WORKDIR /workspace
-
-# (Optional) default command
-CMD ["bash"]
+# [Optional] Uncomment this section to install additional OS packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
