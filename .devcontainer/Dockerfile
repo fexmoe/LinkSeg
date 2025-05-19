@@ -11,15 +11,16 @@ RUN apt-get update \
       ffmpeg \
       wget \
       bzip2 \
+      ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
 # 2) Install Miniconda
 ENV CONDA_DIR=/opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-        -O /tmp/miniconda.sh \
- && bash /tmp/miniconda.sh -b -p $CONDA_DIR \
- && rm /tmp/miniconda.sh \
- && $CONDA_DIR/bin/conda clean -afy
+    -O /tmp/miniconda.sh \
+&& bash /tmp/miniconda.sh -b -p $CONDA_DIR \
+&& rm /tmp/miniconda.sh \
+&& $CONDA_DIR/bin/conda clean -afy
 
 # Make conda available
 ENV PATH="$CONDA_DIR/bin:$PATH"
