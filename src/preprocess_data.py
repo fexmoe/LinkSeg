@@ -1,5 +1,5 @@
 import argparse
-import madmom
+#import madmom
 import os
 import numpy as np
 import librosa
@@ -12,7 +12,7 @@ from tqdm import tqdm
 from pydub import AudioSegment
 from data_utils import FileStruct, write_beats
 
-
+"""
 def madmom_beats(file_struct, y_, sr):
     
     if '.mp3' in str(file_struct.audio_file):
@@ -42,10 +42,47 @@ def madmom_beats(file_struct, y_, sr):
     beat_times = new_beats
     beats = librosa.time_to_frames(beat_times, sr=22050, hop_length=256)
     return beats, audio_duration
+"""
+def librosa_beats(file_struct, y_, sr):
+    
+    if '.mp3' in str(file_struct.audio_file):
+        song_name = str(file_struct.audio_file).split('.mp3')[0]
+        dst = os.path.join(file_struct.ds_path, song_name+'.wav')                                                  
+        sound = AudioSegment.from_mp3(file_struct.audio_file)
+        sound.export(dst, format="wav")
+        audiofile = dst
+        os.remove(file_struct.audio_file)
+        file_struct.audio_file = audiofile
+        y_, sr = librosa.load(audiofile, mono=True)
+    
+    # Get the audio duration
+    audio_duration = librosa.get_duration(y_, sr=sr)
+    
+    # Use librosa's beat detection
+    tempo, beat_frames = librosa.beat.beat_track(y=y_, sr=sr, hop_length=256)
+    
+    # Convert beat frames to times
+    beat_times = librosa.frames_to_time(beat_frames, sr=sr, hop_length=256)
+    
+    # Add a beat at time 0 if the first beat is not at the beginning
+    if len(beat_times) > 0 and beat_times[0] > 0:
+        beat_times = np.insert(beat_times, 0, 0)
+    
+    # Remove beats beyond the audio duration
+    new_beats = []
+    for i in range(len(beat_times)):
+        if beat_times[i] < audio_duration:
+            new_beats.append(beat_times[i])
+    beat_times = new_beats
+    
+    # Convert times back to frames at the target sample rate and hop length
+    beats = librosa.time_to_frames(beat_times, sr=22050, hop_length=256)
+    
+    return beats, audio_duration
 
 
 def compute_beats(file_struct, y, sr):
-    beat_frames, duration = madmom_beats(file_struct, y, sr)
+    beat_frames, duration = librosa_beats(file_struct, y, sr)
     write_beats(file_struct, beat_frames, duration)
 
 

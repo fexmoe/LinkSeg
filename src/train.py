@@ -36,7 +36,7 @@ def train(args):
 
 
     if args.pre_trained_encoder:
-        old_state_dict = torch.load('../data/backbone_repetition.pt')
+        old_state_dict = torch.load('../data/backbone_repetition.pt', map_location=torch.device('cpu'))
         new_state_dict = OrderedDict()
         for k, v in old_state_dict.items():
             name = k.split('network.')[-1]

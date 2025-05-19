@@ -14,8 +14,7 @@ RUN conda install -y python=3.9 \
 #RUN conda install -y python=3.6 \
 #    && pip install --no-cache-dir pipx \
 #    && pipx reinstall-all
-#RUN pip install git+https://github.com/CPJKU/madmom \
-#    && pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # RUN cd src/
 

@@ -56,10 +56,10 @@ def load_model(args) -> LinkSeg:
     print('Model path =', model_path)
 
     if '.ckpt' in model_path:
-        model_path = torch.load(model_path)
+        model_path = torch.load(model_path, map_location=torch.device('cpu'))
         state_dict = model_path['state_dict']
     else:
-        state_dict = torch.load(model_path)
+        state_dict = torch.load(model_path, map_location=torch.device('cpu'))
     new_state_dict = OrderedDict()
 
     for k, v in state_dict.items():
