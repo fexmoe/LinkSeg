@@ -33,13 +33,18 @@ RUN conda create -y -n dev python=3.9 \
 # Use conda’s shell init so that `conda activate` works
 SHELL ["conda", "run", "-n", "dev", "/bin/bash", "-lc"]
 
+RUN conda install -y -n dev \
+      cython \
+      numpy \
+      scipy \
+ && conda clean -afy
+
 # 4) Install Python deps (madmom + requirements.txt)
 #    Assumes your requirements.txt lives at the workspace root
 # Pre-install Cython & NumPy (w/ SciPy) so madmom’s Cython compile sees the headers,
 # then install madmom and the rest of your requirements:
 COPY requirements.txt /workspace/requirements.txt
-RUN pip install cython numpy scipy \
- && pip install git+https://github.com/CPJKU/madmom \
+RUN pip install git+https://github.com/CPJKU/madmom \
  && pip install -r /workspace/requirements.txt
 
 # 5) Set the working directory
